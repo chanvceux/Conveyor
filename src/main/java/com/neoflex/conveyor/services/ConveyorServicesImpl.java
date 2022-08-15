@@ -249,6 +249,4 @@ public class ConveyorServicesImpl implements ConveyorServices {
         log.info("RETURNING currentRate after scoring, value: {}", currentRate);
         return currentRate;
     }
-
 }
-
