@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.*;
@@ -16,22 +17,22 @@ import java.util.*;
 public class ConveyorServiceImpl implements ConveyorService {
 
     @Value("${service.rate}")
-    private static BigDecimal rate;
+    BigDecimal rate;
 
     @Value("${service.insurancePercent}")
-    private static BigDecimal insurancePercent;
+    BigDecimal insurancePercent;
 
     @Value("${service.changeRateByOne}")
-    private static BigDecimal changeRateByOne;
+    BigDecimal changeRateByOne;
 
     @Value("${service.changeRateByTwo}")
-    private static BigDecimal changeRateByTwo;
+    BigDecimal changeRateByTwo;
 
     @Value("${service.changeRateByThree}")
-    private static BigDecimal changeRateByThree;
+    BigDecimal changeRateByThree;
 
     @Value("${service.changeRateByFour}")
-    private static BigDecimal changeRateByFour;
+    BigDecimal changeRateByFour;
 
     @Override
     public List<LoanOfferDTO> offers(LoanApplicationRequestDTO loanApplicationRequestDTO) {
@@ -103,50 +104,56 @@ public class ConveyorServiceImpl implements ConveyorService {
         BigDecimal monthlyPayment = ConveyorService.calculateMonthlyPayment(currentRate, scoringDataDTO.getTerm(), scoringDataDTO.getAmount());
         log.trace("EXECUTION calculateMonthlyPayment(). Returned monthlyPayment value: {}", monthlyPayment);
 
+        BigDecimal psk = monthlyPayment.multiply(BigDecimal.valueOf(scoringDataDTO.getTerm()));
+
         CreditDTO creditDTO = CreditDTO.builder()
                 .amount(scoringDataDTO.getAmount())
                 .term(scoringDataDTO.getTerm())
                 .monthlyPayment(monthlyPayment)
                 .rate(currentRate)
-                .psk(monthlyPayment.multiply(BigDecimal.valueOf(scoringDataDTO.getTerm())))
+                .psk(psk)
                 .isInsuranceEnabled(scoringDataDTO.getIsInsuranceEnabled())
                 .isSalaryClient(scoringDataDTO.getIsSalaryClient())
-                .paymentSchedule(paymentScheduleInfo(scoringDataDTO, monthlyPayment))
+                .paymentSchedule(paymentScheduleInfo(scoringDataDTO, monthlyPayment, currentRate, psk))
                 .build();
 
         log.debug("RETURNING creditDTO, OUTPUT VALUES: {}", creditDTO);
         return creditDTO;
     }
 
-    private List<PaymentScheduleElementDTO> paymentScheduleInfo(ScoringDataDTO scoringDataDTO, BigDecimal monthlyPayment) {
+    private List<PaymentScheduleElementDTO> paymentScheduleInfo(ScoringDataDTO scoringDataDTO, BigDecimal monthlyPayment, BigDecimal currentRate, BigDecimal amount) {
 
         List<PaymentScheduleElementDTO> paymentScheduleElements = new ArrayList<>();
 
-        BigDecimal percent = monthlyPayment.subtract(scoringDataDTO.getAmount()
-                .divide(BigDecimal.valueOf(scoringDataDTO.getTerm()), RoundingMode.HALF_DOWN)); //Todo
-        log.trace("CALCULATING percent, value: {}", percent);
+        BigDecimal totalPayment = zero;
+        BigDecimal interestPayment = zero;
+        BigDecimal debtPayment = zero;
+        BigDecimal remainingDebt = scoringDataDTO.getAmount();
 
-        BigDecimal totalPayment = monthlyPayment;
-        BigDecimal remainingDebt = monthlyPayment.multiply(BigDecimal.valueOf(scoringDataDTO.getTerm()))
-                .subtract(monthlyPayment);
-        log.trace("CALCULATING remainingDebt, value: {}", remainingDebt);
+        for (int i = 0; i < scoringDataDTO.getTerm()+1; i++) {
 
-        for (int i = 1; i < scoringDataDTO.getTerm() + 1; i++) {
+            if (i == scoringDataDTO.getTerm()) {
+                debtPayment = debtPayment.add(remainingDebt); // last payment
+                remainingDebt = zero; // loan balance
+            }
 
             paymentScheduleElements.add(PaymentScheduleElementDTO.builder()
                     .number(i)
                     .date(LocalDate.now().plusMonths(i))
-                    .totalPayment(totalPayment)
-                    .interestPayment(percent)
-                    .debtPayment(monthlyPayment.subtract(percent))
-                    .remainingDebt(remainingDebt)
+                    .totalPayment(totalPayment.setScale(2, RoundingMode.HALF_UP))
+                    .interestPayment(interestPayment.setScale(3, RoundingMode.HALF_UP))
+                    .debtPayment(debtPayment.setScale(2, RoundingMode.HALF_UP))
+                    .remainingDebt(remainingDebt.setScale(2, RoundingMode.HALF_UP))
                     .build());
 
-            totalPayment = totalPayment.add(monthlyPayment);
-            remainingDebt = remainingDebt.subtract(monthlyPayment);
+                interestPayment = ConveyorService.calculatePercent(remainingDebt, currentRate); // percent
+                debtPayment = monthlyPayment.subtract(interestPayment); // principal repayment
+                totalPayment = totalPayment.add(monthlyPayment); // total monthly payment
+                remainingDebt = remainingDebt.subtract(debtPayment); // loan balance
         }
 
-        log.debug("RETURNING paymentScheduleElements List, size: {}", paymentScheduleElements.size());
+        log.trace("RETURNING paymentScheduleElements List, size: {}", paymentScheduleElements.size());
+        log.debug("RETURNING VALUES [paymentScheduleElements]: {}", paymentScheduleElements);
         return paymentScheduleElements;
     }
 
