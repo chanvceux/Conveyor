@@ -1,11 +1,11 @@
-package com.neoflex.conveyor.services;
+package com.neoflex.conveyor.service;
 
-import com.neoflex.conveyor.dtos.*;
-import com.neoflex.conveyor.enums.EmploymentStatus;
-import com.neoflex.conveyor.enums.Gender;
-import com.neoflex.conveyor.enums.MaritalStatus;
-import com.neoflex.conveyor.enums.Position;
-import com.neoflex.conveyor.exceptionHandlers.ScoringException;
+import com.neoflex.conveyor.dto.*;
+import com.neoflex.conveyor.enumeration.EmploymentStatus;
+import com.neoflex.conveyor.enumeration.Gender;
+import com.neoflex.conveyor.enumeration.MaritalStatus;
+import com.neoflex.conveyor.enumeration.Position;
+import com.neoflex.conveyor.exceptionHandler.ScoringException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -19,10 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
-class ConveyorServicesImplTest {
+class ConveyorServiceImplTest {
 
     @Spy
-    ConveyorServicesImpl conveyorServices = new ConveyorServicesImpl();
+    ConveyorServiceImpl conveyorServices = new ConveyorServiceImpl();
 
     @Test
     void offers() {

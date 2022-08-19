@@ -1,14 +1,13 @@
-package com.neoflex.conveyor.controllers;
+package com.neoflex.conveyor.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.neoflex.conveyor.dtos.EmploymentDTO;
-import com.neoflex.conveyor.dtos.LoanApplicationRequestDTO;
-import com.neoflex.conveyor.dtos.ScoringDataDTO;
-import com.neoflex.conveyor.enums.EmploymentStatus;
-import com.neoflex.conveyor.enums.Gender;
-import com.neoflex.conveyor.enums.MaritalStatus;
-import com.neoflex.conveyor.enums.Position;
-import org.junit.jupiter.api.Assertions;
+import com.neoflex.conveyor.dto.EmploymentDTO;
+import com.neoflex.conveyor.dto.LoanApplicationRequestDTO;
+import com.neoflex.conveyor.dto.ScoringDataDTO;
+import com.neoflex.conveyor.enumeration.EmploymentStatus;
+import com.neoflex.conveyor.enumeration.Gender;
+import com.neoflex.conveyor.enumeration.MaritalStatus;
+import com.neoflex.conveyor.enumeration.Position;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,11 +1,11 @@
-package com.neoflex.conveyor.controllers;
+package com.neoflex.conveyor.controller;
 
-import com.neoflex.conveyor.dtos.CreditDTO;
-import com.neoflex.conveyor.dtos.LoanApplicationRequestDTO;
-import com.neoflex.conveyor.dtos.LoanOfferDTO;
-import com.neoflex.conveyor.dtos.ScoringDataDTO;
-import com.neoflex.conveyor.exceptionHandlers.ScoringException;
-import com.neoflex.conveyor.services.ConveyorServicesImpl;
+import com.neoflex.conveyor.dto.CreditDTO;
+import com.neoflex.conveyor.dto.LoanApplicationRequestDTO;
+import com.neoflex.conveyor.dto.LoanOfferDTO;
+import com.neoflex.conveyor.dto.ScoringDataDTO;
+import com.neoflex.conveyor.exceptionHandler.ScoringException;
+import com.neoflex.conveyor.service.ConveyorServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +19,20 @@ import java.util.List;
 public class ConveyorController {
 
     @Autowired
-    private ConveyorServicesImpl conveyorServices;
+    private ConveyorServiceImpl conveyorServices;
 
     @PostMapping("/conveyor/offers")
     @Operation(summary = "Loan offers", description = "Describes four personal approximate credit offers")
     public List<LoanOfferDTO> offers (@Valid @RequestBody LoanApplicationRequestDTO loanApplicationRequestDTO) {
 
-        log.info("GETTING LoanApplicationRequestDTO, INPUT VALUES: {}", loanApplicationRequestDTO);
-        log.info("EXECUTING ConveyorServicesImpl.offers()");
+        log.debug("GETTING LoanApplicationRequestDTO, INPUT VALUES: {}", loanApplicationRequestDTO);
         return conveyorServices.offers(loanApplicationRequestDTO);
     }
 
     @PostMapping("/conveyor/calculation")
     public CreditDTO calculation (@RequestBody ScoringDataDTO scoringDataDTO) throws ScoringException {
 
-        log.info("GETTING ScoringDataDTO, INPUT VALUES: {}", scoringDataDTO);
-        log.info("EXECUTING ConveyorServicesImpl.creditCalculation()");
+        log.debug("GETTING ScoringDataDTO, INPUT VALUES: {}", scoringDataDTO);
         return conveyorServices.creditCalculation(scoringDataDTO);
     }
 

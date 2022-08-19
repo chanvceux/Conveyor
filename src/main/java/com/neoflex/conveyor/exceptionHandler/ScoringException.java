@@ -1,4 +1,4 @@
-package com.neoflex.conveyor.exceptionHandlers;
+package com.neoflex.conveyor.exceptionHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

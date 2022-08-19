@@ -1,4 +1,4 @@
-package com.neoflex.conveyor.exceptionHandlers;
+package com.neoflex.conveyor.exceptionHandler;
 
 public class Response {
     private String message;

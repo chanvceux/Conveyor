@@ -1,4 +1,4 @@
-package com.neoflex.conveyor.constraints;
+package com.neoflex.conveyor.constraint;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

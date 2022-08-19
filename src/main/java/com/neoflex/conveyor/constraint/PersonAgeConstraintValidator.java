@@ -1,6 +1,6 @@
-package com.neoflex.conveyor.constraints;
+package com.neoflex.conveyor.constraint;
 
-import com.neoflex.conveyor.services.ConveyorServices;
+import com.neoflex.conveyor.service.ConveyorService;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -10,6 +10,6 @@ public class PersonAgeConstraintValidator implements ConstraintValidator <Person
 
     @Override
     public boolean isValid(LocalDate birthDate, ConstraintValidatorContext constraintValidatorContext) {
-        return ConveyorServices.calculateAge(birthDate) >= 18;
+        return ConveyorService.calculateAge(birthDate) >= 18;
     }
 }

@@ -1,4 +1,4 @@
-package com.neoflex.conveyor.enums;
+package com.neoflex.conveyor.enumeration;
 
 public enum Gender {
     MALE,

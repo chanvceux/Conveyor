@@ -1,5 +1,5 @@
-package com.neoflex.conveyor.dtos;
-import com.neoflex.conveyor.constraints.PersonAgeConstraint;
+package com.neoflex.conveyor.dto;
+import com.neoflex.conveyor.constraint.PersonAgeConstraint;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
