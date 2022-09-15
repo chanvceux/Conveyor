@@ -1,0 +1,45 @@
+[
+  {
+    "applicationId": "null",
+    "requestedAmount": "20000",
+    "totalAmount": "21182.76",
+    "term": "6",
+    "monthlyPayment": "3530.46",
+    "rate": "20",
+    "isInsuranceEnabled": "false",
+    "isSalaryClient": "false"
+  },
+
+  {
+    "applicationId": "null",
+    "requestedAmount": "20000",
+    "totalAmount": "21122.82",
+    "term": "6",
+    "monthlyPayment": "3520.47",
+    "rate": "19",
+    "isInsuranceEnabled": "false",
+    "isSalaryClient": "true"
+  },
+
+  {
+    "applicationId": "null",
+    "requestedAmount": "21000.00",
+    "totalAmount": "22053.48",
+    "term": "6",
+    "monthlyPayment": "3675.58",
+    "rate": "17",
+    "isInsuranceEnabled": "true",
+    "isSalaryClient": "false"
+  },
+
+  {
+    "applicationId": "null",
+    "requestedAmount": "21000.00",
+    "totalAmount": "21990.84",
+    "term": "6",
+    "monthlyPayment": "3665.14",
+    "rate": "16",
+    "isInsuranceEnabled": "true",
+    "isSalaryClient": "true"
+  }
+]

@@ -1,0 +1,78 @@
+[
+  {
+    "amount": "210000.00",
+    "term": "2",
+    "monthlyPayment": "106445.95",
+    "rate": "11",
+    "psk": "212891.90",
+    "isInsuranceEnabled": "true",
+    "isSalaryClient": "false",
+    "paymentSchedule":
+      [
+        {
+          "number": "0",
+          "date": "2022-08-26",
+          "totalPayment": "0.00",
+          "interestPayment": "0.000",
+          "debtPayment": "0.00",
+          "remainingDebt": "210000.00"
+        },
+        {
+          "number": "1",
+          "date": "2022-09-26",
+          "totalPayment": "106445.95",
+          "interestPayment": "1925.000",
+          "debtPayment": "104520.95",
+          "remainingDebt": "105479.05"
+        },
+        {
+          "number": "2",
+          "date": "2022-10-26",
+          "totalPayment": "212891.90",
+          "interestPayment": "966.891",
+          "debtPayment": "105479.05",
+          "remainingDebt": "0.00"
+        }
+
+      ]
+  },
+
+  {
+    "amount": "200000.00",
+    "term": "2",
+    "monthlyPayment": "102506.89",
+    "rate": "20",
+    "psk": "205013.78",
+    "isInsuranceEnabled": "false",
+    "isSalaryClient": "true",
+    "paymentSchedule":
+    [
+      {
+        "number": "0",
+        "date": "2022-08-26",
+        "totalPayment": "0.00",
+        "interestPayment": "0.000",
+        "debtPayment": "0.00",
+        "remainingDebt": "200000.00"
+      },
+
+      {
+        "number": "1",
+        "date": "2022-09-26",
+        "totalPayment": "102506.89",
+        "interestPayment": "3333.333",
+        "debtPayment": "99173.56",
+        "remainingDebt": "100826.44"
+      },
+
+      {
+        "number": "2",
+        "date": "2022-10-26",
+        "totalPayment": "205013.78",
+        "interestPayment": "1680.441",
+        "debtPayment": "100826.44",
+        "remainingDebt": "0.00"
+      }
+    ]
+  }
+]

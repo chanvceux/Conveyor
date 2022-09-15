@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+service:
+  rate: 20
+
+  rateChangeForSalaryClients: 1
+  rateChangeForInsuranceEnabled: 3
+  percentageChangeForInsuranceEnabled: 0.05
+  rateChangeForDependentAmount: 1
+
+  rateChangeForSelfEmployed: 1
+  rateChangeForBusinessOwner: 1
+
+  rateChangeForMiddleManager: 2
+  rateChangeForTopManager: 4
+
+  rateChangeForMarried: 3
+  rateChangeForNotMarried: 2
+  rateChangeForDivorced: 1
+
+  rateChangeForFemale: 3
+  rateChangeForMale: 3
+  rateChangeForNonBinary: 3
+
