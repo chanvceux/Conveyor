@@ -9,7 +9,9 @@ import java.time.LocalDate;
 
 @Builder
 @Data
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 
 public class LoanApplicationRequestDTO {
 

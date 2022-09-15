@@ -25,8 +25,8 @@ public class ConveyorController {
     @Operation(summary = "Loan offers", description = "Describes four personal approximate credit offers")
     public List<LoanOfferDTO> offers (@Valid @RequestBody LoanApplicationRequestDTO loanApplicationRequestDTO) {
 
-        log.debug("GETTING LoanApplicationRequestDTO, INPUT VALUES: {}", loanApplicationRequestDTO);
-        return conveyorServices.offers(loanApplicationRequestDTO);
+            log.debug("GETTING LoanApplicationRequestDTO, INPUT VALUES: {}", loanApplicationRequestDTO);
+            return conveyorServices.offers(loanApplicationRequestDTO);
     }
 
     @PostMapping("/conveyor/calculation")

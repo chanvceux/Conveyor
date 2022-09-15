@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.*;
@@ -19,20 +18,47 @@ public class ConveyorServiceImpl implements ConveyorService {
     @Value("${service.rate}")
     BigDecimal rate;
 
-    @Value("${service.insurancePercent}")
-    BigDecimal insurancePercent;
+    @Value("${service.percentageChangeForInsuranceEnabled}")
+    BigDecimal percentageChangeForInsuranceEnabled;
 
-    @Value("${service.changeRateByOne}")
-    BigDecimal changeRateByOne;
+    @Value("${service.rateChangeForSalaryClients}")
+    BigDecimal rateChangeForSalaryClients;
 
-    @Value("${service.changeRateByTwo}")
-    BigDecimal changeRateByTwo;
+    @Value("${service.rateChangeForInsuranceEnabled}")
+    BigDecimal rateChangeForInsuranceEnabled;
 
-    @Value("${service.changeRateByThree}")
-    BigDecimal changeRateByThree;
+    @Value("${service.rateChangeForSelfEmployed}")
+    BigDecimal  rateChangeForSelfEmployed;
 
-    @Value("${service.changeRateByFour}")
-    BigDecimal changeRateByFour;
+    @Value("${service.rateChangeForBusinessOwner}")
+    BigDecimal rateChangeForBusinessOwner;
+
+    @Value("${service.rateChangeForMiddleManager}")
+    BigDecimal rateChangeForMiddleManager;
+
+    @Value("${service.rateChangeForTopManager}")
+    BigDecimal rateChangeForTopManager;
+
+    @Value("${service.rateChangeForMarried}")
+    BigDecimal rateChangeForMarried;
+
+    @Value("${service.rateChangeForNotMarried}")
+    BigDecimal rateChangeForNotMarried;
+
+    @Value("${service.rateChangeForDivorced}")
+    BigDecimal rateChangeForDivorced;
+
+    @Value("${service.rateChangeForFemale}")
+    BigDecimal rateChangeForFemale;
+
+    @Value("${service.rateChangeForMale}")
+    BigDecimal rateChangeForMale;
+
+    @Value("${service.rateChangeForNonBinary}")
+    BigDecimal rateChangeForNonBinary;
+
+    @Value("${service.rateChangeForDependentAmount}")
+    BigDecimal rateChangeForDependentAmount;
 
     @Override
     public List<LoanOfferDTO> offers(LoanApplicationRequestDTO loanApplicationRequestDTO) {
@@ -65,14 +91,14 @@ public class ConveyorServiceImpl implements ConveyorService {
         BigDecimal totalRate = rate;
 
         if (isSalaryClient.equals(true)) {
-            totalRate = totalRate.subtract(changeRateByOne);
+            totalRate = totalRate.subtract(rateChangeForSalaryClients);
             log.trace("CHANGING RATE. Subtracting by 1, caused by: isSalaryClient TRUE, current value: {}", totalRate);
         }
 
         if (isInsuranceEnabled.equals(true)) {
-            totalRate = totalRate.subtract(changeRateByThree);
+            totalRate = totalRate.subtract(rateChangeForInsuranceEnabled);
             log.trace("CHANGING RATE. Subtracting by 3, caused by: isInsuranceEnabled TRUE, current value: {}", totalRate);
-            requestedAmount = requestedAmount.add(requestedAmount.multiply(insurancePercent));
+            requestedAmount = requestedAmount.add(requestedAmount.multiply(percentageChangeForInsuranceEnabled));
             log.trace("CHANGING AMOUNT. Increasing by 5 percent, caused by: isInsuranceEnabled TRUE, current value: {}", requestedAmount);
         }
 
@@ -107,11 +133,11 @@ public class ConveyorServiceImpl implements ConveyorService {
         BigDecimal psk = monthlyPayment.multiply(BigDecimal.valueOf(scoringDataDTO.getTerm()));
 
         CreditDTO creditDTO = CreditDTO.builder()
-                .amount(scoringDataDTO.getAmount())
+                .amount(scoringDataDTO.getAmount().setScale(2, RoundingMode.HALF_UP))
                 .term(scoringDataDTO.getTerm())
-                .monthlyPayment(monthlyPayment)
+                .monthlyPayment(monthlyPayment.setScale(2, RoundingMode.HALF_UP))
                 .rate(currentRate)
-                .psk(psk)
+                .psk(psk.setScale(2, RoundingMode.HALF_UP))
                 .isInsuranceEnabled(scoringDataDTO.getIsInsuranceEnabled())
                 .isSalaryClient(scoringDataDTO.getIsSalaryClient())
                 .paymentSchedule(paymentScheduleInfo(scoringDataDTO, monthlyPayment, currentRate, psk))
@@ -146,7 +172,7 @@ public class ConveyorServiceImpl implements ConveyorService {
                     .remainingDebt(remainingDebt.setScale(2, RoundingMode.HALF_UP))
                     .build());
 
-                interestPayment = ConveyorService.calculatePercent(remainingDebt, currentRate); // percent
+                interestPayment = ConveyorService.calculateMonthlyPercentPayment(remainingDebt, currentRate); // percent
                 debtPayment = monthlyPayment.subtract(interestPayment); // principal repayment
                 totalPayment = totalPayment.add(monthlyPayment); // total monthly payment
                 remainingDebt = remainingDebt.subtract(debtPayment); // loan balance
@@ -186,11 +212,11 @@ public class ConveyorServiceImpl implements ConveyorService {
 
         switch (scoringDataDTO.getEmployment().getEmploymentStatus()) {
 
-            case SELF_EMPLOYED: currentRate = currentRate.add(changeRateByOne);
+            case SELF_EMPLOYED: currentRate = currentRate.add(rateChangeForSelfEmployed);
                                 log.trace("CHANGING RATE. Increasing by 1, caused by: EmploymentStatus " +
                                         "SELF_EMPLOYED, current value: {}", currentRate); break;
 
-            case BUSINESS_OWNER: currentRate = currentRate.add(changeRateByOne);
+            case BUSINESS_OWNER: currentRate = currentRate.add(rateChangeForBusinessOwner);
                                  log.trace("CHANGING RATE. Increasing by 1, caused by: EmploymentStatus " +
                                          "BUSINESS_OWNER, current value: {}", currentRate); break;
 
@@ -200,11 +226,11 @@ public class ConveyorServiceImpl implements ConveyorService {
 
         switch (scoringDataDTO.getEmployment().getPosition()) {
 
-            case MIDDLE_MANAGER: currentRate = currentRate.subtract(changeRateByTwo);
+            case MIDDLE_MANAGER: currentRate = currentRate.subtract(rateChangeForMiddleManager);
                                  log.trace("CHANGING RATE. Subtracting by 2, caused by: Position " +
                                          "MIDDLE_MANAGER, current value: {}", currentRate); break;
 
-            case TOP_MANAGER: currentRate = currentRate.subtract(changeRateByFour);
+            case TOP_MANAGER: currentRate = currentRate.subtract(rateChangeForTopManager);
                               log.trace("CHANGING RATE. Subtracting by 4, caused by: Position " +
                                       "TOP_MANAGER, current value: {}", currentRate); break;
 
@@ -212,15 +238,15 @@ public class ConveyorServiceImpl implements ConveyorService {
 
         switch (scoringDataDTO.getMaritalStatus()) {
 
-            case MARRIED: currentRate = currentRate.subtract(changeRateByThree);
+            case MARRIED: currentRate = currentRate.subtract(rateChangeForMarried);
                           log.trace("CHANGING RATE. Subtracting by 3, caused by: MaritalStatus " +
                                   "MARRIED, current value: {}", currentRate); break;
 
-            case NOT_MARRIED: currentRate = currentRate.add(changeRateByTwo);
+            case NOT_MARRIED: currentRate = currentRate.add(rateChangeForNotMarried);
                               log.trace("CHANGING RATE. Increasing by 2, caused by: MaritalStatus " +
                                       "NOT_MARRIED, current value: {}", currentRate); break;
 
-            case DIVORCED: currentRate = currentRate.add(changeRateByOne);
+            case DIVORCED: currentRate = currentRate.add(rateChangeForDivorced);
                            log.trace("CHANGING RATE. Increasing by 1, caused by: MaritalStatus " +
                                    "DIVORCED, current value: {}", currentRate); break;
         }
@@ -230,39 +256,39 @@ public class ConveyorServiceImpl implements ConveyorService {
             case FEMALE:
                 if (ConveyorService.calculateAge(scoringDataDTO.getBirthdate()) <= 60
                     && ConveyorService.calculateAge(scoringDataDTO.getBirthdate()) >= 35) {
-                    currentRate = currentRate.subtract(changeRateByThree);
+                    currentRate = currentRate.subtract(rateChangeForFemale);
                     log.trace("CHANGING RATE. Subtracting by 3, caused by: Gender FEMALE, " +
                             "35 <= age <= 60, current value: {}", currentRate);} break;
 
             case MALE:
                 if (ConveyorService.calculateAge(scoringDataDTO.getBirthdate()) <= 55
                     && ConveyorService.calculateAge(scoringDataDTO.getBirthdate()) >= 30) {
-                    currentRate = currentRate.subtract(changeRateByThree);
+                    currentRate = currentRate.subtract(rateChangeForMale);
                     log.trace("CHANGING RATE. Subtracting by 3, caused by: Gender MALE, " +
                             "30 <= age <= 55, current value: {}", currentRate);} break;
 
             case NON_BINARY:
-                currentRate = currentRate.add(changeRateByThree);
+                currentRate = currentRate.add(rateChangeForNonBinary);
                 log.trace("CHANGING RATE. Increasing by 3, caused by: Gender NON_BINARY, " +
                          "current value: {}", currentRate); break;
         }
 
         if (scoringDataDTO.getDependentAmount() > 1) {
-            currentRate = currentRate.add(changeRateByOne);
+            currentRate = currentRate.add(rateChangeForDependentAmount);
             log.trace("CHANGING RATE. Increasing by 1, caused by: DependentAmount > 1, " +
                     "current value {}", currentRate);
         }
 
         if (scoringDataDTO.getIsSalaryClient().equals(true)) {
-            currentRate = currentRate.subtract(changeRateByOne);
+            currentRate = currentRate.subtract(rateChangeForSalaryClients);
             log.trace("CHANGING RATE. Subtracting by 1, caused by: IsSalaryClient TRUE, " +
                     "current value: {}", currentRate);
         }
 
         if (scoringDataDTO.getIsInsuranceEnabled().equals(true)) {
-            currentRate = currentRate.subtract(changeRateByThree);
+            currentRate = currentRate.subtract(rateChangeForInsuranceEnabled);
             log.trace("CHANGING RATE. Subtracting by 3, caused by: isInsuranceEnabled TRUE, current value: {}", currentRate);
-            scoringDataDTO.setAmount(scoringDataDTO.getAmount().add(scoringDataDTO.getAmount().multiply(insurancePercent)));
+            scoringDataDTO.setAmount(scoringDataDTO.getAmount().add(scoringDataDTO.getAmount().multiply(percentageChangeForInsuranceEnabled)));
             log.trace("CHANGING AMOUNT. Increasing by 5 percent, caused by: isInsuranceEnabled TRUE, current value: {}", scoringDataDTO.getAmount());
         }
 
