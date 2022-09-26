@@ -2,8 +2,8 @@ package com.neoflex.conveyor.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.neoflex.conveyor.dto.LoanApplicationRequestDTO;
-import com.neoflex.conveyor.testData.LoanApplicationRequestTestData;
-import com.neoflex.conveyor.testData.ScoringTestData;
+import com.neoflex.conveyor.test_data.LoanApplicationRequestTestData;
+import com.neoflex.conveyor.test_data.ScoringTestData;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

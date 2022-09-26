@@ -1,10 +1,10 @@
 package com.neoflex.conveyor.service;
 
-import com.neoflex.conveyor.exceptionHandler.ScoringException;
-import com.neoflex.conveyor.testData.CreditTestData;
-import com.neoflex.conveyor.testData.LoanApplicationRequestTestData;
-import com.neoflex.conveyor.testData.LoanOfferTestData;
-import com.neoflex.conveyor.testData.ScoringTestData;
+import com.neoflex.conveyor.exception_handler.ScoringException;
+import com.neoflex.conveyor.test_data.CreditTestData;
+import com.neoflex.conveyor.test_data.LoanApplicationRequestTestData;
+import com.neoflex.conveyor.test_data.LoanOfferTestData;
+import com.neoflex.conveyor.test_data.ScoringTestData;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;

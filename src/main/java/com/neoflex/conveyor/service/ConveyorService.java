@@ -4,7 +4,7 @@ import com.neoflex.conveyor.dto.CreditDTO;
 import com.neoflex.conveyor.dto.LoanApplicationRequestDTO;
 import com.neoflex.conveyor.dto.LoanOfferDTO;
 import com.neoflex.conveyor.dto.ScoringDataDTO;
-import com.neoflex.conveyor.exceptionHandler.ScoringException;
+import com.neoflex.conveyor.exception_handler.ScoringException;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

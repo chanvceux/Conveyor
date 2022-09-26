@@ -1,7 +1,7 @@
 package com.neoflex.conveyor.service;
 
 import com.neoflex.conveyor.dto.*;
-import com.neoflex.conveyor.exceptionHandler.ScoringException;
+import com.neoflex.conveyor.exception_handler.ScoringException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

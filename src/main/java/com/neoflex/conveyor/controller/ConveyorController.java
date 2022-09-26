@@ -4,7 +4,7 @@ import com.neoflex.conveyor.dto.CreditDTO;
 import com.neoflex.conveyor.dto.LoanApplicationRequestDTO;
 import com.neoflex.conveyor.dto.LoanOfferDTO;
 import com.neoflex.conveyor.dto.ScoringDataDTO;
-import com.neoflex.conveyor.exceptionHandler.ScoringException;
+import com.neoflex.conveyor.exception_handler.ScoringException;
 import com.neoflex.conveyor.service.ConveyorServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;

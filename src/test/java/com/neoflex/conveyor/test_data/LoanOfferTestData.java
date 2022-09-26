@@ -1,4 +1,4 @@
-package com.neoflex.conveyor.testData;
+package com.neoflex.conveyor.test_data;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
