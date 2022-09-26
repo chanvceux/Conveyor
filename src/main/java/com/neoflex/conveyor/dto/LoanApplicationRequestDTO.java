@@ -15,6 +15,8 @@ import java.time.LocalDate;
 
 public class LoanApplicationRequestDTO {
 
+    Long application_id;
+
     @NotNull
     @DecimalMin("10000")
     BigDecimal amount;

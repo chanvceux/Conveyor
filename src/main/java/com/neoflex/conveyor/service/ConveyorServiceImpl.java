@@ -105,9 +105,8 @@ public class ConveyorServiceImpl implements ConveyorService {
         BigDecimal monthlyPayment = ConveyorService.calculateMonthlyPayment(totalRate, loanApplicationRequestDTO.getTerm(), requestedAmount);
         log.trace("EXECUTION calculateMonthlyPayment(). Returned monthlyPayment value: {}", monthlyPayment);
 
-
         LoanOfferDTO loanOfferDTO = LoanOfferDTO.builder()
-                //.applicationId()
+                .applicationId(loanApplicationRequestDTO.getApplication_id())
                 .requestedAmount(requestedAmount)
                 .totalAmount(monthlyPayment.multiply(BigDecimal.valueOf(loanApplicationRequestDTO.getTerm())))
                 .term(loanApplicationRequestDTO.getTerm())
@@ -140,14 +139,14 @@ public class ConveyorServiceImpl implements ConveyorService {
                 .psk(psk.setScale(2, RoundingMode.HALF_UP))
                 .isInsuranceEnabled(scoringDataDTO.getIsInsuranceEnabled())
                 .isSalaryClient(scoringDataDTO.getIsSalaryClient())
-                .paymentSchedule(paymentScheduleInfo(scoringDataDTO, monthlyPayment, currentRate, psk))
+                .paymentSchedule(paymentScheduleInfo(scoringDataDTO, monthlyPayment, currentRate))
                 .build();
 
         log.debug("RETURNING creditDTO, OUTPUT VALUES: {}", creditDTO);
         return creditDTO;
     }
 
-    private List<PaymentScheduleElementDTO> paymentScheduleInfo(ScoringDataDTO scoringDataDTO, BigDecimal monthlyPayment, BigDecimal currentRate, BigDecimal amount) {
+    private List<PaymentScheduleElementDTO> paymentScheduleInfo(ScoringDataDTO scoringDataDTO, BigDecimal monthlyPayment, BigDecimal currentRate) {
 
         List<PaymentScheduleElementDTO> paymentScheduleElements = new ArrayList<>();
 
