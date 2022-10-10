@@ -14,5 +14,4 @@ public class ScoringExceptionHandler {
         Response response = new Response(e.getMessage());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-    //todo
 }
