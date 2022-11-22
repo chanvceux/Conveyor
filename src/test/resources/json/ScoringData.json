@@ -1,0 +1,190 @@
+[
+  {
+    "amount": "200000",
+    "term": "2",
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "middleName": "middleName",
+    "gender": "FEMALE",
+    "birthdate": "2000-07-01",
+    "passportSeries": "2016",
+    "passportNumber": "234321",
+    "passportIssueDate": "2000-07-01",
+    "passportIssueBranch": "2000-07-01",
+    "maritalStatus": "MARRIED",
+    "dependentAmount": "0",
+    "employment": {
+      "employmentStatus": "BUSINESS_OWNER",
+      "employerINN": "3434",
+      "salary": "30000",
+      "position": "TOP_MANAGER",
+      "workExperienceTotal": "12",
+      "workExperienceCurrent": "3"
+    },
+    "account": "String",
+    "isInsuranceEnabled": "true",
+    "isSalaryClient": "false"
+  },
+
+  {
+    "amount": "200000",
+    "term": "2",
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "middleName": "middleName",
+    "gender": "MALE",
+    "birthdate": "2000-07-01",
+    "passportSeries": "2016",
+    "passportNumber": "234321",
+    "passportIssueDate": "2000-07-01",
+    "passportIssueBranch": "2000-07-01",
+    "maritalStatus": "DIVORCED",
+    "dependentAmount": "2",
+    "employment": {
+      "employmentStatus": "SELF_EMPLOYED",
+      "employerINN": "3434",
+      "salary": "20000",
+      "position": "MIDDLE_MANAGER",
+      "workExperienceTotal": "12",
+      "workExperienceCurrent": "3"
+    },
+    "account": "String",
+    "isInsuranceEnabled": "false",
+    "isSalaryClient": "true"
+  },
+
+  {
+    "amount": "200000",
+    "term": "2",
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "middleName": "middleName",
+    "gender": "MALE",
+    "birthdate": "2000-07-01",
+    "passportSeries": "2016",
+    "passportNumber": "234321",
+    "passportIssueDate": "2000-07-01",
+    "passportIssueBranch": "2000-07-01",
+    "maritalStatus": "DIVORCED",
+    "dependentAmount": "2",
+    "employment": {
+      "employmentStatus": "SELF_EMPLOYED",
+      "employerINN": "3434",
+      "salary": "20000",
+      "position": "MIDDLE_MANAGER",
+      "workExperienceTotal": "13",
+      "workExperienceCurrent": "1"
+    },
+    "account": "String",
+    "isInsuranceEnabled": "false",
+    "isSalaryClient": "true"
+  },
+
+  {
+    "amount": "200000",
+    "term": "2",
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "middleName": "middleName",
+    "gender": "MALE",
+    "birthdate": "2000-07-01",
+    "passportSeries": "2016",
+    "passportNumber": "234321",
+    "passportIssueDate": "2000-07-01",
+    "passportIssueBranch": "2000-07-01",
+    "maritalStatus": "DIVORCED",
+    "dependentAmount": "2",
+    "employment": {
+      "employmentStatus": "SELF_EMPLOYED",
+      "employerINN": "3434",
+      "salary": "20000",
+      "position": "MIDDLE_MANAGER",
+      "workExperienceTotal": "3",
+      "workExperienceCurrent": "3"
+    },
+    "account": "String",
+    "isInsuranceEnabled": "false",
+    "isSalaryClient": "true"
+  },
+
+  {
+    "amount": "200000",
+    "term": "2",
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "middleName": "middleName",
+    "gender": "MALE",
+    "birthdate": "2000-07-01",
+    "passportSeries": "2016",
+    "passportNumber": "234321",
+    "passportIssueDate": "2000-07-01",
+    "passportIssueBranch": "2000-07-01",
+    "maritalStatus": "DIVORCED",
+    "dependentAmount": "2",
+    "employment": {
+      "employmentStatus": "SELF_EMPLOYED",
+      "employerINN": "3434",
+      "salary": "1000",
+      "position": "MIDDLE_MANAGER",
+      "workExperienceTotal": "24",
+      "workExperienceCurrent": "12"
+    },
+    "account": "String",
+    "isInsuranceEnabled": "false",
+    "isSalaryClient": "true"
+  },
+
+  {
+    "amount": "200000",
+    "term": "2",
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "middleName": "middleName",
+    "gender": "FEMALE",
+    "birthdate": "2012-07-01",
+    "passportSeries": "2016",
+    "passportNumber": "234321",
+    "passportIssueDate": "2000-07-01",
+    "passportIssueBranch": "2000-07-01",
+    "maritalStatus": "MARRIED",
+    "dependentAmount": "0",
+    "employment": {
+      "employmentStatus": "BUSINESS_OWNER",
+      "employerINN": "3434",
+      "salary": "30000",
+      "position": "TOP_MANAGER",
+      "workExperienceTotal": "12",
+      "workExperienceCurrent": "12"
+    },
+    "account": "String",
+    "isInsuranceEnabled": "true",
+    "isSalaryClient": "false"
+  },
+
+  {
+    "amount": "200000",
+    "term": "2",
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "middleName": "middleName",
+    "gender": "FEMALE",
+    "birthdate": "2000-07-01",
+    "passportSeries": "2016",
+    "passportNumber": "234321",
+    "passportIssueDate": "2000-07-01",
+    "passportIssueBranch": "2000-07-01",
+    "maritalStatus": "MARRIED",
+    "dependentAmount": "0",
+    "employment": {
+      "employmentStatus": "UNEMPLOYED",
+      "employerINN": "3434",
+      "salary": "30000",
+      "position": "TOP_MANAGER",
+      "workExperienceTotal": "12",
+      "workExperienceCurrent": "3"
+    },
+    "account": "String",
+    "isInsuranceEnabled": "true",
+    "isSalaryClient": "false"
+  }
+]

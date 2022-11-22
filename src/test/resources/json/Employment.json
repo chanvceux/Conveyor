@@ -1,0 +1,19 @@
+[
+  {
+    "employmentStatus": "BUSINESS_OWNER",
+    "employerINN": "3434",
+    "salary": "30000",
+    "position": "TOP_MANAGER",
+    "workExperienceTotal": "12",
+    "workExperienceCurrent": "3"
+  },
+
+  {
+    "employmentStatus": "SELF_EMPLOYED",
+    "employerINN": "3434",
+    "salary": "20000",
+    "position": "MIDDLE_MANAGER",
+    "workExperienceTotal": "12",
+    "workExperienceCurrent": "3"
+  }
+]
