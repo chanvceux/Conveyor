@@ -123,7 +123,7 @@ public class ConveyorServiceImpl implements ConveyorService {
     @Override
     public CreditDTO creditCalculation(ScoringDataDTO scoringDataDTO) throws ScoringException {
 
-        BigDecimal currentRate  = scoringData(scoringDataDTO);
+        BigDecimal currentRate = scoringData(scoringDataDTO);
         log.trace("EXECUTION scoringData(). Returned currentRate value: {}", currentRate);
 
         BigDecimal monthlyPayment = ConveyorService.calculateMonthlyPayment(currentRate, scoringDataDTO.getTerm(), scoringDataDTO.getAmount());

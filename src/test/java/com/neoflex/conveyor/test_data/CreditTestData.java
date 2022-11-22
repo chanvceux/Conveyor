@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CreditTestData {
 
-    static String jsonPathCreditDTO = "./src/main/resources/json/Credit.json";
+    static String jsonPathCreditDTO = "/Users/tevyants/Desktop/work/Studying/Project/Conveyor/src/test/resources/json/Credit.json";
     static final ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
 
     private static List<CreditDTO> getCreditTestData() throws IOException {

@@ -1,7 +1,6 @@
 package com.neoflex.conveyor.service;
 
 import com.neoflex.conveyor.exception_handler.ScoringException;
-import com.neoflex.conveyor.test_data.CreditTestData;
 import com.neoflex.conveyor.test_data.LoanApplicationRequestTestData;
 import com.neoflex.conveyor.test_data.LoanOfferTestData;
 import com.neoflex.conveyor.test_data.ScoringTestData;
@@ -32,14 +31,6 @@ class ConveyorServiceImplTest {
               conveyorServices.offers(LoanApplicationRequestTestData.getCorrectData()));
     }
 
-    @Test
-    void creditCalculation() throws ScoringException, IOException {
-        assertEquals(CreditTestData.getFirstCorrectData(),
-                conveyorServices.creditCalculation(ScoringTestData.getCorrectDataFirst()));
-        assertEquals(CreditTestData.getSecondCorrectData(),
-                conveyorServices.creditCalculation(ScoringTestData.getCorrectDataSecond()));
-
-    }
 
     @Test
     void scoringRejectedByWorkExperienceCurrent() {
@@ -47,7 +38,7 @@ class ConveyorServiceImplTest {
         ScoringException thrown = assertThrows(ScoringException.class, () -> {
             conveyorServices.creditCalculation(ScoringTestData.getRejectedByWorkExperienceCurrent());
         });
-        assertEquals(thrown.getMessage(), "Current work experience < 3");
+        assertEquals("Current work experience < 3", thrown.getMessage());
     }
 
     @Test
@@ -56,7 +47,7 @@ class ConveyorServiceImplTest {
         ScoringException thrown = assertThrows(ScoringException.class, () -> {
             conveyorServices.creditCalculation(ScoringTestData.getRejectedByWorkExperienceTotal());
         });
-        assertEquals(thrown.getMessage(), "Total work experience < 12");
+        assertEquals("Total work experience < 12", thrown.getMessage());
     }
 
     @Test
@@ -65,7 +56,7 @@ class ConveyorServiceImplTest {
         ScoringException thrown = assertThrows(ScoringException.class, () -> {
             conveyorServices.creditCalculation(ScoringTestData.getRejectedBySalary());
         });
-        assertEquals(thrown.getMessage(), "20 salaries < amount");
+        assertEquals("20 salaries < amount",  thrown.getMessage());
     }
 
     @Test
@@ -74,7 +65,7 @@ class ConveyorServiceImplTest {
         ScoringException thrown = assertThrows(ScoringException.class, () -> {
             conveyorServices.creditCalculation(ScoringTestData.getRejectedByAge());
         });
-        assertEquals(thrown.getMessage(), "20 < Age < 60");
+        assertEquals("20 < Age < 60", thrown.getMessage());
     }
 
     @Test
@@ -83,7 +74,7 @@ class ConveyorServiceImplTest {
         ScoringException thrown = assertThrows(ScoringException.class, () -> {
             conveyorServices.creditCalculation(ScoringTestData.getRejectedByUnemployedStatus());
         });
-        assertEquals(thrown.getMessage(), "Employment Status: UNEMPLOYED");
+        assertEquals("Employment Status: UNEMPLOYED", thrown.getMessage());
     }
 
 

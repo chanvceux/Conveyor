@@ -14,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -32,102 +31,6 @@ class ConveyorControllerTest {
     private ObjectMapper objectMapper;
     @Autowired
     private MockMvc mockMvc;
-    @Test
-    void postConveyorOffersWrongFirstName() throws Exception {
-
-        mockMvc.perform(post("/conveyor/offers")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(LoanApplicationRequestTestData.getDataWithWrongFirstName())))
-                .andExpect(status().isBadRequest());
-
-        verify(conveyorController, times(0)).offers(loanApplicationRequestDTO);
-    }
-
-    @Test
-    void postConveyorOffersWrongMiddleName() throws Exception {
-
-        mockMvc.perform(post("/conveyor/offers")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(LoanApplicationRequestTestData.getDataWithWrongMiddleName())))
-                .andExpect(status().isBadRequest());
-
-        verify(conveyorController, times(0)).offers(loanApplicationRequestDTO);
-    }
-
-    @Test
-    void postConveyorOffersWrongLastName() throws Exception {
-
-        mockMvc.perform(post("/conveyor/offers")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(LoanApplicationRequestTestData.getDataWithWrongLastName())))
-                .andExpect(status().isBadRequest());
-
-        verify(conveyorController, times(0)).offers(loanApplicationRequestDTO);
-    }
-    @Test
-    void postConveyorOffersWrongBirthDate() throws Exception {
-
-        mockMvc.perform(post("/conveyor/offers")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(LoanApplicationRequestTestData.getDataWithWrongBirthDate())))
-                .andExpect(status().isBadRequest());
-
-        verify(conveyorController, times(0)).offers(loanApplicationRequestDTO);
-    }
-    @Test
-    void postConveyorOffersWrongTerm() throws Exception {
-
-        mockMvc.perform(post("/conveyor/offers")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(LoanApplicationRequestTestData.getDataWithWrongTerm())))
-                .andExpect(status().isBadRequest());
-
-        verify(conveyorController, times(0)).offers(loanApplicationRequestDTO);
-    }
-
-    @Test
-    void postConveyorOffersWrongAmount() throws Exception {
-
-        mockMvc.perform(post("/conveyor/offers")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(LoanApplicationRequestTestData.getDataWithWrongAmount())))
-                .andExpect(status().isBadRequest());
-
-        verify(conveyorController, times(0)).offers(loanApplicationRequestDTO);
-    }
-
-    @Test
-    void postConveyorOffersWrongEmail() throws Exception {
-
-        mockMvc.perform(post("/conveyor/offers")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(LoanApplicationRequestTestData.getDataWithWrongEmail())))
-                .andExpect(status().isBadRequest());
-
-        verify(conveyorController, times(0)).offers(loanApplicationRequestDTO);
-    }
-
-    @Test
-    void postConveyorOffersWrongPassportSeries() throws Exception {
-
-        mockMvc.perform(post("/conveyor/offers")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(LoanApplicationRequestTestData.getDataWithWrongPassportSeries())))
-                .andExpect(status().isBadRequest());
-
-        verify(conveyorController, times(0)).offers(loanApplicationRequestDTO);
-    }
-
-    @Test
-    void postConveyorOffersWrongPassportNumber() throws Exception {
-
-        mockMvc.perform(post("/conveyor/offers")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(LoanApplicationRequestTestData.getDataWithWrongPassportNumber())))
-                .andExpect(status().isBadRequest());
-
-        verify(conveyorController, times(0)).offers(loanApplicationRequestDTO);
-    }
 
     @Test
     void offers() throws Exception {
