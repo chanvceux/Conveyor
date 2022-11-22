@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class ScoringTestData {
-    static String jsonPathScoringDataDTO = "./src/main/resources/json/ScoringData.json";
+    static String jsonPathScoringDataDTO = "./src/test/resources/json/ScoringData.json";
     static final ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
 
     private static List<ScoringDataDTO> getScoringTestData() throws IOException {

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LoanApplicationRequestTestData {
 
-    static String jsonPathLoanAppReqDTO = "./src/main/resources/json/LoanApplicationRequest.json";
+    static String jsonPathLoanAppReqDTO = "./src/test/resources/json/LoanApplicationRequest.json";
     static final ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
 
     private static List<LoanApplicationRequestDTO> getLoanAppReqTestData() throws IOException {

@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 public class LoanOfferTestData {
-    static String jsonPathLoanOfferDTO = "./src/main/resources/json/LoanOffer.json";
+    static String jsonPathLoanOfferDTO = "./src/test/resources/json/LoanOffer.json";
     static final ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
 
     public static List<LoanOfferDTO> getLoanOfferTestData() throws IOException {
