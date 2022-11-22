@@ -15,7 +15,10 @@
     <description>Conveyor</description>
     <properties>
         <java.version>11</java.version>
+        <sonar.organization>chanvceux</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -92,6 +95,8 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.9.8</version>
         </dependency>
+
+
 
     </dependencies>
 
